@@ -13,3 +13,6 @@
 /.php-cs-fixer.php
 /.php-cs-fixer.cache
 ###< php-cs-fixer/shim ###
+
+### .htaccess ###
+/public/.htaccess
