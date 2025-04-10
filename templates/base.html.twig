@@ -57,15 +57,18 @@
     </header>
 
     <main class="items-center w-[86%] mx-auto mt-8">
-        {% block body %}
-        {% endblock %}
-        <!-- Flash Messages Section -->
-        {% for message in app.flashes('success') %}
-        <div class="flash-success">{{ message }}</div>
+        {# ✅ Flash messages block — place here #}
+        {% for label, messages in app.flashes %}
+        {% for message in messages %}
+        <div class="alert alert-{{ label }}">
+            {{ message }}
+        </div>
         {% endfor %}
-        {% for message in app.flashes('error') %}
-        <div class="flash-error">{{ message }}</div>
         {% endfor %}
+
+        {# Main content block #}
+        {% block body %}{% endblock %}
+
     </main>
     <div> <img class="h-auto max-w-24 rounded-lg" src="{{ asset('images/logo.jpg') }}" alt="logo"> </div>
 

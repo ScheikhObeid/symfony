@@ -5,8 +5,11 @@ namespace App\Entity;
 use App\Repository\ServiceRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: ServiceRepository::class)]
+#[Vich\Uploadable]
 class Service
 {
     #[ORM\Id]
@@ -22,6 +25,9 @@ class Service
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $image = null;
+
+    #[Vich\UploadableField(mapping: 'service_image', fileNameProperty: 'image')]
+    private ?File $imageFile = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $priority = null;
@@ -48,7 +54,6 @@ class Service
     public function setTitle(?string $title): static
     {
         $this->title = $title;
-
         return $this;
     }
 
@@ -60,7 +65,6 @@ class Service
     public function setDescription(?string $description): static
     {
         $this->description = $description;
-
         return $this;
     }
 
@@ -72,8 +76,21 @@ class Service
     public function setImage(?string $image): static
     {
         $this->image = $image;
-
         return $this;
+    }
+
+    public function setImageFile(?File $imageFile = null): void
+    {
+        $this->imageFile = $imageFile;
+
+        if ($imageFile !== null) {
+            $this->updatedAt = new \DateTimeImmutable();
+        }
+    }
+
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
     }
 
     public function getPriority(): ?string
@@ -84,7 +101,6 @@ class Service
     public function setPriority(?string $priority): static
     {
         $this->priority = $priority;
-
         return $this;
     }
 
@@ -96,7 +112,6 @@ class Service
     public function setCreatedAt(?\DateTimeImmutable $createdAt): static
     {
         $this->createdAt = $createdAt;
-
         return $this;
     }
 
@@ -108,7 +123,6 @@ class Service
     public function setUpdatedAt(?\DateTimeImmutable $updatedAt): static
     {
         $this->updatedAt = $updatedAt;
-
         return $this;
     }
 
@@ -120,7 +134,6 @@ class Service
     public function setCreatedBy(?int $createdBy): static
     {
         $this->createdBy = $createdBy;
-
         return $this;
     }
 }

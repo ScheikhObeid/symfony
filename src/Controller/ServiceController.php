@@ -26,16 +26,23 @@ final class ServiceController extends AbstractController
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $service = new Service();
+        $service->setCreatedAt(new \DateTimeImmutable());
+        $service->setCreatedBy(1);
+    
         $form = $this->createForm(ServiceType::class, $service);
         $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($service);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('app_service_index', [], Response::HTTP_SEE_OTHER);
+    
+        if ($form->isSubmitted()) {
+            if ($form->isValid()) {
+                $entityManager->persist($service);
+                $entityManager->flush();
+                $this->addFlash('success', 'Service created successfully!');
+                return $this->redirectToRoute('app_service_index');
+            } else {
+                dump($form->getErrors(true, false)); // 👈 See what's failing
+            }
         }
-
+    
         return $this->render('service/new.html.twig', [
             'service' => $service,
             'form' => $form,
@@ -57,6 +64,7 @@ final class ServiceController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $service->setUpdatedAt(new \DateTimeImmutable());
             $entityManager->flush();
 
             return $this->redirectToRoute('app_service_index', [], Response::HTTP_SEE_OTHER);
