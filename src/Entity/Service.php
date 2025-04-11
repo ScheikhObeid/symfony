@@ -24,9 +24,9 @@ class Service
     private ?string $description = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $image = null;
+    private ?string $imageLink = null;
 
-    #[Vich\UploadableField(mapping: 'service_image', fileNameProperty: 'image')]
+    #[Vich\UploadableField(mapping: 'service_image', fileNameProperty: 'imageLink')]
     private ?File $imageFile = null;
 
     #[ORM\Column(length: 255, nullable: true)]
@@ -68,17 +68,16 @@ class Service
         return $this;
     }
 
-    public function getImage(): ?string
+    public function getImageLink(): ?string
     {
-        return $this->image;
+        return $this->imageLink;
     }
-
-    public function setImage(?string $image): static
+    
+    public function setImageLink(string $imageLink): self
     {
-        $this->image = $image;
+        $this->imageLink = $imageLink;
         return $this;
     }
-
     public function setImageFile(?File $imageFile = null): void
     {
         $this->imageFile = $imageFile;

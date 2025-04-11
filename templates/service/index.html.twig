@@ -11,7 +11,7 @@
             <th>Id</th>
             <th>Title</th>
             <th>Description</th>
-            <th>Image</th>
+            <th>imageLink</th>
             <th>Priority</th>
             <th>CreatedAt</th>
             <th>UpdatedAt</th>
@@ -26,8 +26,8 @@
             <td>{{ service.title }}</td>
             <td>{{ service.description }}</td>
             <td>
-                {% if service.image %}
-                <img src="{{ asset('uploads/services/' ~ service.image) }}" alt="{{ service.title }}"
+                {% if service.imageLink %}
+                <img src="{{ asset('uploads/services/' ~ service.imageLink) }}" alt="{{ service.title }}"
                     style="width: 100px; height: auto;">
                 {% else %}
                 <span class="text-muted">No image</span>
