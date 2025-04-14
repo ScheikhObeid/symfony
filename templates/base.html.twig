@@ -37,11 +37,36 @@
                     <li>
                         <a class="hover:text-gray-500" href="#">Impressum</a>
                     </li>
+                    <!-- Admin Dropdown -->
+                    <li class="relative group">
+                        <a href="#" class="hover:text-gray-500">Admin ▾</a>
+                        <ul
+                            class="absolute hidden group-hover:block bg-white border border-gray-300 mt-2 py-2 w-48 z-50">
+                            <li>
+                                <a href="{{ path('app_service_index') }}"
+                                    class="block px-4 py-2 hover:bg-gray-100">Services</a>
+                            </li>
+                            <li>
+                                <a href="#" class="block px-4 py-2 hover:bg-gray-100">Users</a>
+                            </li>
+                            <li>
+                                <a href="#" class="block px-4 py-2 hover:bg-gray-100">Settings</a>
+                            </li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
             <div class="flex justify-end border-1 border-black ml-auto w-60">
                 <div class="flex justify-start md:justify-end md:px-6">
-                    <button class="bg-[#a6c1ee] text-white px-5 py-2 rounded-full hover:bg-[#87acec]">Sign in</button>
+                    <a class="hover:text-gray-500" href="{{ path('app_register') }}">Register</a>
+
+                </div>
+                <div class="flex justify-start md:justify-end md:px-6">
+                    <a class="hover:text-gray-500" href="{{ path('app_login') }}">login</a>
+
+                </div>
+                <div>
+                    <a class="hover:text-gray-500" href="{{ path('app_logout') }}">logout</a>
                 </div>
                 <div class="min-w-20 border-1 border-red-600 flex justify-end  md:hidden">
                     <button id="toggleB" class="cursor-pointer rounded-lg">

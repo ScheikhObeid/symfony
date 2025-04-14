@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use App\Entity\Service;
 use App\Form\ServiceType;
@@ -11,13 +11,13 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[Route('/service')]
+#[Route('/admin/service')]
 final class ServiceController extends AbstractController
 {
     #[Route(name: 'app_service_index', methods: ['GET'])]
     public function index(ServiceRepository $serviceRepository): Response
     {
-        return $this->render('service/index.html.twig', [
+        return $this->render('admin/service/index.html.twig', [
             'services' => $serviceRepository->findAll(),
         ]);
     }
@@ -43,7 +43,7 @@ final class ServiceController extends AbstractController
             }
         }
     
-        return $this->render('service/new.html.twig', [
+        return $this->render('admin/service/new.html.twig', [
             'service' => $service,
             'form' => $form,
         ]);
@@ -52,7 +52,7 @@ final class ServiceController extends AbstractController
     #[Route('/{id}', name: 'app_service_show', methods: ['GET'])]
     public function show(Service $service): Response
     {
-        return $this->render('service/show.html.twig', [
+        return $this->render('admin/service/show.html.twig', [
             'service' => $service,
         ]);
     }
@@ -70,7 +70,7 @@ final class ServiceController extends AbstractController
             return $this->redirectToRoute('app_service_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('service/edit.html.twig', [
+        return $this->render('admin/service/edit.html.twig', [
             'service' => $service,
             'form' => $form,
         ]);
