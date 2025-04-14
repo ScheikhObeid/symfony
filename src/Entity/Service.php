@@ -73,7 +73,7 @@ class Service
         return $this->imageLink;
     }
     
-    public function setImageLink(string $imageLink): self
+    public function setImageLink(?string $imageLink): self
     {
         $this->imageLink = $imageLink;
         return $this;

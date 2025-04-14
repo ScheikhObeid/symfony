@@ -21,8 +21,6 @@ class ServiceType extends AbstractType
         ->add('imageFile', VichImageType::class, [
             'required' => false,
             'label' => 'Service Image',
-            'download_uri' => false,
-            'image_uri' => true,
         ]);
     }
 

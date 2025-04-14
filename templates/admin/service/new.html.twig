@@ -1,41 +1,51 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/base_admin.html.twig' %}
 
 {% block title %}New Service{% endblock %}
 
-{% block body %}
-<h1 class="text-2xl font-bold mb-4">Create New Service</h1>
+{% block admin_body %}
+<h1 class="text-2xl font-bold text-gray-800 mb-6">➕ Create New Service</h1>
 
-{{ form_start(form, { 'attr': { 'enctype': 'multipart/form-data', 'class': 'space-y-6' } }) }}
-<div>
-    {{ form_label(form.title, null, {'label_attr': {'class': 'block font-medium'}}) }}
-    {{ form_widget(form.title, {'attr': {'class': 'w-full p-2 border rounded'}}) }}
-    {{ form_errors(form.title) }}
-</div>
+<div class="bg-white p-6 rounded-lg shadow-md max-w-2xl">
+    {{ form_start(form, {
+    attr: {
+    enctype: 'multipart/form-data',
+    class: 'space-y-6'
+    }
+    }) }}
 
-<div>
-    {{ form_label(form.description, null, {'label_attr': {'class': 'block font-medium'}}) }}
-    {{ form_widget(form.description, {'attr': {'class': 'w-full p-2 border rounded'}}) }}
-    {{ form_errors(form.description) }}
-</div>
+    <div>
+        {{ form_label(form.title, null, { label_attr: { class: 'block font-semibold mb-1 text-gray-700' } }) }}
+        {{ form_widget(form.title, { attr: { class: 'w-full p-3 border border-gray-400 rounded' } }) }}
+        {{ form_errors(form.title) }}
+    </div>
 
-<div>
-    {{ form_label(form.priority, null, {'label_attr': {'class': 'block font-medium'}}) }}
-    {{ form_widget(form.priority, {'attr': {'class': 'w-full p-2 border rounded'}}) }}
-    {{ form_errors(form.priority) }}
-</div>
+    <div>
+        {{ form_label(form.description, null, { label_attr: { class: 'block font-semibold mb-1 text-gray-700' } }) }}
+        {{ form_widget(form.description, { attr: { class: 'w-full p-3 border border-gray-400 rounded' } }) }}
+        {{ form_errors(form.description) }}
+    </div>
 
-<div>
-    {{ form_label(form.imageFile, null, {'label_attr': {'class': 'block font-medium'}}) }}
-    {{ form_widget(form.imageFile, {'attr': {'class': 'w-full'}}) }}
-    {{ form_errors(form.imageFile) }}
-</div>
+    <div>
+        {{ form_label(form.priority, null, { label_attr: { class: 'block font-semibold mb-1 text-gray-700' } }) }}
+        {{ form_widget(form.priority, { attr: { class: 'w-full p-3 border border-gray-400 rounded' } }) }}
+        {{ form_errors(form.priority) }}
+    </div>
 
-<button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">
-    Save
-</button>
-{{ form_end(form) }}
+    <div>
+        {{ form_label(form.imageFile, null, { label_attr: { class: 'block font-semibold mb-1 text-gray-700' } }) }}
+        {{ form_widget(form.imageFile, { attr: { class: 'w-full p-2 border border-gray-400 rounded' } }) }}
+        {{ form_errors(form.imageFile) }}
+    </div>
 
-<div class="mt-4">
-    <a href="{{ path('app_service_index') }}" class="text-blue-500 hover:underline">Back to list</a>
+    <div class="flex justify-between items-center">
+        <button type="submit" class="bg-green-600 hover:bg-green-700 text-white px-5 py-2 rounded font-semibold">
+            💾 Save
+        </button>
+        <a href="{{ path('app_service_index') }}" class="text-blue-600 hover:underline text-sm font-medium">
+            ← Back to list
+        </a>
+    </div>
+
+    {{ form_end(form) }}
 </div>
 {% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="flex">
+    <aside class="w-64 bg-white border-r p-4 sub_body ">
+        <h2 class="text-xl font-semibold mb-4">Admin</h2>
+        <ul class="space-y-2">
+            <li><a href="{{ path('app_service_index') }}" class="block hover:text-blue-600">Services</a></li>
+            <li><a href="#" class="block hover:text-blue-600">Users</a></li>
+            <li><a href="#" class="block hover:text-blue-600">Settings</a></li>
+        </ul>
+    </aside>
+
+    <main class="flex-1 p-6 ">
+        {% block admin_body %}{% endblock %}
+    </main>
+</div>
+{% endblock %}
