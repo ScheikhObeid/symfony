@@ -38,10 +38,17 @@
                         <a class="hover:text-gray-500" href="#">Impressum</a>
                     </li>
                     <!-- Admin Dropdown -->
-                    <li class="relative group">
-                        <a href="#" class="hover:text-gray-500">Admin ▾</a>
-                        <ul
-                            class="absolute hidden group-hover:block bg-white border border-gray-300 mt-2 py-2 w-48 z-50">
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <li data-controller="admin-dropdown" class="relative">
+                        <button type="button" class="hover:text-gray-500 inline-block"
+                            data-action="click->admin-dropdown#toggle">
+                            Admin ▾
+                        </button>
+
+                        <!-- Optional: invisible area to prevent flicker on hover is no longer needed with JS click -->
+
+                        <ul data-admin-dropdown-target="menu"
+                            class="absolute left-0 hidden bg-white border border-gray-300 mt-2 py-2 w-48 z-50">
                             <li>
                                 <a href="{{ path('app_service_index') }}"
                                     class="block px-4 py-2 hover:bg-gray-100">Services</a>
@@ -54,20 +61,25 @@
                             </li>
                         </ul>
                     </li>
+                    {% endif %}
                 </ul>
             </div>
             <div class="flex justify-end border-1 border-black ml-auto w-60">
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                 <div class="flex justify-start md:justify-end md:px-6">
                     <a class="hover:text-gray-500" href="{{ path('app_register') }}">Register</a>
 
                 </div>
+                {% endif %}
                 <div class="flex justify-start md:justify-end md:px-6">
                     <a class="hover:text-gray-500" href="{{ path('app_login') }}">login</a>
 
                 </div>
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                 <div>
                     <a class="hover:text-gray-500" href="{{ path('app_logout') }}">logout</a>
                 </div>
+                {% endif %}
                 <div class="min-w-20 border-1 border-red-600 flex justify-end  md:hidden">
                     <button id="toggleB" class="cursor-pointer rounded-lg">
                         <svg width="45" height="45" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
