@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div data-controller="slideshow" class="relative overflow-hidden mx-auto">
+    <div data-slideshow-target="slides" class="flex transition-transform duration-700 ease-in-out">
+        {% for service in services %}
+        <div class="w-full flex-shrink-0 relative">
+            <img src="{{ asset('uploads/services/' ~ service.imageLink) }}" alt="" class="w-full h-96 object-cover">
+            <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                <h2 class="text-white text-2xl font-bold">{{ service.title }}</h2>
+            </div>
+        </div>
+        {% endfor %}
+
+        {# Clone the first slide for smooth looping #}
+        {% set first = services|first %}
+        {% if first %}
+        <div class="w-full flex-shrink-0 relative">
+            <img src="{{ asset('uploads/services/' ~ first.imageLink) }}" alt="" class="w-full h-96 object-cover">
+            <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                <h2 class="text-white text-2xl font-bold">{{ first.title }}</h2>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+
+
+{% endblock %}

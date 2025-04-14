@@ -1,4 +1,40 @@
-{{ form_start(form) }}
-{{ form_widget(form) }}
-<button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_start(form, { 'attr': { 'enctype': 'multipart/form-data', 'class': 'space-y-6' } }) }}
+
+<div>
+    {{ form_label(form.title, null, { label_attr: { class: 'block font-semibold mb-1 text-gray-700' } }) }}
+    {{ form_widget(form.title, { attr: { class: 'w-full p-3 border border-gray-400 rounded' } }) }}
+    {{ form_errors(form.title) }}
+</div>
+
+<div>
+    {{ form_label(form.description, null, { label_attr: { class: 'block font-semibold mb-1 text-gray-700' } }) }}
+    {{ form_widget(form.description, { attr: { class: 'w-full p-3 border border-gray-400 rounded' } }) }}
+    {{ form_errors(form.description) }}
+</div>
+
+<div>
+    {{ form_label(form.priority, null, { label_attr: { class: 'block font-semibold mb-1 text-gray-700' } }) }}
+    {{ form_widget(form.priority, { attr: { class: 'w-full p-3 border border-gray-400 rounded' } }) }}
+    {{ form_errors(form.priority) }}
+</div>
+<div>
+    {% if service.imageLink %}
+    <img src="{{ asset('uploads/services/' ~ service.imageLink) }}" alt="{{ service.title }}"
+        class="w-full h-auto rounded shadow">
+    {% else %}
+    <span class="text-gray-400 italic">No image</span>
+    {% endif %}
+</div>
+<div>
+    <!-- {{ form_label(form.imageFile, null, { label_attr: { class: 'block font-semibold mb-1 text-gray-700' } }) }} -->
+    {{ form_widget(form.imageFile, { attr: { class: 'w-full border border-gray-400 rounded p-2 bg-white' } }) }}
+    {{ form_errors(form.imageFile) }}
+</div>
+
+<div class="pt-4">
+    <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded font-semibold">
+        {{ button_label|default('Save') }}
+    </button>
+</div>
+
 {{ form_end(form) }}
