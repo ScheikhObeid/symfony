@@ -1,0 +1,57 @@
+{% extends 'admin/base_admin.html.twig' %}
+
+{% block title %}Legal Details{% endblock %}
+
+{% block admin_body %}
+<h1 class="text-2xl font-bold text-gray-800 mb-6">📄 Legal Details</h1>
+
+<div class="bg-white p-6 rounded-lg shadow-md max-w-3xl">
+    <table class="min-w-full text-sm text-left border border-gray-200 mb-6">
+        <tbody>
+            <tr class="border-b">
+                <th class="px-4 py-2 bg-gray-100 font-semibold text-gray-700">Id</th>
+                <td class="px-4 py-2">{{ legal.id }}</td>
+            </tr>
+            <tr class="border-b">
+                <th class="px-4 py-2 bg-gray-100 font-semibold text-gray-700">Title</th>
+                <td class="px-4 py-2">{{ legal.title }}</td>
+            </tr>
+            <tr class="border-b align-top">
+                <th class="px-4 py-2 bg-gray-100 font-semibold text-gray-700">Content</th>
+                <td class="px-4 py-2 whitespace-pre-line">{{ legal.content }}</td>
+            </tr>
+            <tr class="border-b">
+                <th class="px-4 py-2 bg-gray-100 font-semibold text-gray-700">Slug</th>
+                <td class="px-4 py-2">{{ legal.slug }}</td>
+            </tr>
+            <tr class="border-b">
+                <th class="px-4 py-2 bg-gray-100 font-semibold text-gray-700">Created At</th>
+                <td class="px-4 py-2">{{ legal.createdAt ? legal.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr class="border-b">
+                <th class="px-4 py-2 bg-gray-100 font-semibold text-gray-700">Updated At</th>
+                <td class="px-4 py-2">{{ legal.updatedAt ? legal.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th class="px-4 py-2 bg-gray-100 font-semibold text-gray-700">Created By</th>
+                <td class="px-4 py-2">{{ legal.createdBy }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="flex justify-between items-center">
+        <a href="{{ path('app_admin_legal_index') }}" class="text-blue-600 hover:underline text-sm font-medium">
+            ← Back to list
+        </a>
+
+        <div class="flex gap-4">
+            <a href="{{ path('app_admin_legal_edit', {'id': legal.id}) }}"
+                class="bg-yellow-500 hover:bg-yellow-600 text-white text-sm px-4 py-2 rounded font-medium">
+                ✏️ Edit
+            </a>
+
+            {{ include('admin/legal/_delete_form.html.twig') }}
+        </div>
+    </div>
+</div>
+{% endblock %}

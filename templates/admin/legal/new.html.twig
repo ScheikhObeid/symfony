@@ -1,0 +1,45 @@
+{% extends 'admin/base_admin.html.twig' %}
+
+{% block title %}New Legal{% endblock %}
+
+{% block admin_body %}
+<h1 class="text-2xl font-bold text-gray-800 mb-6">➕ Create New Legal Entry</h1>
+
+<div class="bg-white p-6 rounded-lg shadow-md max-w-2xl">
+    {{ form_start(form, {
+    attr: {
+    enctype: 'multipart/form-data',
+    class: 'space-y-6'
+    }
+    }) }}
+
+    <div>
+        {{ form_label(form.title, null, { label_attr: { class: 'block font-semibold mb-1 text-gray-700' } }) }}
+        {{ form_widget(form.title, { attr: { class: 'w-full p-3 border border-gray-400 rounded' } }) }}
+        {{ form_errors(form.title) }}
+    </div>
+
+    <div>
+        {{ form_label(form.content, null, { label_attr: { class: 'block font-semibold mb-1 text-gray-700' } }) }}
+        {{ form_widget(form.content, { attr: { class: 'w-full p-3 border border-gray-400 rounded h-40' } }) }}
+        {{ form_errors(form.content) }}
+    </div>
+
+    <div>
+        {{ form_label(form.slug, null, { label_attr: { class: 'block font-semibold mb-1 text-gray-700' } }) }}
+        {{ form_widget(form.slug, { attr: { class: 'w-full p-3 border border-gray-400 rounded' } }) }}
+        {{ form_errors(form.slug) }}
+    </div>
+
+    <div class="flex justify-between items-center">
+        <button type="submit" class="bg-green-600 hover:bg-green-700 text-white px-5 py-2 rounded font-semibold">
+            💾 Save
+        </button>
+        <a href="{{ path('app_admin_legal_index') }}" class="text-blue-600 hover:underline text-sm font-medium">
+            ← Back to list
+        </a>
+    </div>
+
+    {{ form_end(form) }}
+</div>
+{% endblock %}
