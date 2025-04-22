@@ -15,7 +15,7 @@
 ###< php-cs-fixer/shim ###
 
 ### .htaccess ###
-/public/.htaccess
+
 
 ###> symfony/asset-mapper ###
 /public/assets/
