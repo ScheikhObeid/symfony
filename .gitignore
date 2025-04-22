@@ -22,3 +22,8 @@
 /public/uploads/
 /assets/vendor/
 ###< symfony/asset-mapper ###
+
+
+###> symfony/my files ###
+/commands.txt
+###< symfony/my files ###
