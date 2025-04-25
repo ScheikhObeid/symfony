@@ -1,0 +1,7 @@
+jms_metadata:
+    metadata:
+        auto_detection: false
+        directories:
+            App:
+                namespace_prefix: 'App'
+                path: '%kernel.project_dir%/src' 
